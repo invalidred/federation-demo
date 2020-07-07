@@ -33,7 +33,9 @@ const server = new ApolloServer({
       typeDefs,
       resolvers
     }
-  ])
+  ]),
+  debug: process.env.SHOW_STACK_TRACE_IN_ERRORS === 'true',
+
 });
 
 server.listen({ port: 4003 }).then(({ url }) => {

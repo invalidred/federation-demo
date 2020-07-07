@@ -2,22 +2,34 @@
   "name": "federation-demo",
   "main": "gateway.js",
   "scripts": {
-    "start-gateway": "nodemon gateway.js",
-    "start-service-accounts": "nodemon services/accounts/index.js",
-    "start-service-reviews": "nodemon services/reviews/index.js",
-    "start-service-products": "nodemon services/products/index.js",
-    "start-service-inventory": "nodemon services/inventory/index.js",
+    "start-gateway": "SHOW_STACK_TRACE_IN_ERRORS=false DD_SERVICE=federation-demo-gateway DD_ENV=local DD_VERSION=1.0 nodemon gateway.js",
+    "start-service-accounts": "SHOW_STACK_TRACE_IN_ERRORS=false DD_SERVICE=federation-demo-accounts DD_ENV=local DD_VERSION=1.0 nodemon services/accounts/index.js",
+    "start-service-reviews": "SHOW_STACK_TRACE_IN_ERRORS=false DD_SERVICE=federation-demo-reviews DD_ENV=local DD_VERSION=1.0 nodemon services/reviews/index.js",
+    "start-service-products": "SHOW_STACK_TRACE_IN_ERRORS=false DD_SERVICE=federation-demo-products DD_ENV=local DD_VERSION=1.0 nodemon services/products/index.js",
+    "start-service-inventory": "SHOW_STACK_TRACE_IN_ERRORS=false DD_SERVICE=federation-demo-inventory DD_ENV=local DD_VERSION=1.0 nodemon services/inventory/index.js",
     "start-services": "concurrently \"npm:start-service-*\"",
     "postinstall": "lerna bootstrap"
   },
   "devDependencies": {
+    "concurrently": "latest",
     "lerna": "latest",
-    "nodemon": "latest",
-    "concurrently": "latest"
+    "ndb": "^1.1.5",
+    "nodemon": "latest"
   },
   "dependencies": {
     "@apollo/gateway": "latest",
+    "@stockx/node-structured-logging-datadog": "^1.0.0",
+    "@stockx/node-structured-logging-winston": "^1.0.3",
+    "ajv": "^6.12.2",
     "apollo-server": "latest",
-    "graphql": "latest"
+    "apollo-server-errors": "^2.4.1",
+    "axios": "^0.19.2",
+    "datadog-winston": "^1.5.0",
+    "dd-trace": "^0.22.0",
+    "graphql": "latest",
+    "graphql-format-error-context-extension": "^0.2.15",
+    "json-schema": "^0.2.5",
+    "ramda": "^0.27.0",
+    "winston": "^3.3.2"
   }
 }
